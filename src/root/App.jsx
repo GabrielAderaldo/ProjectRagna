@@ -1,11 +1,11 @@
-import { Button, Flex, Input } from 'antd'
 import Login from '../login/page/loginPage'
-
+import  FirebaseProvider  from '../context/firebaseContext'
 function App() {
-
   return (
     <>
+    <FirebaseProvider>
       <Login/>
+    </FirebaseProvider>
     </>
   )
 }

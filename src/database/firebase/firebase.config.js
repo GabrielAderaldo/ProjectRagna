@@ -1,11 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth,createUserWithEmailAndPassword } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+const firebaseConfigObject = {
   apiKey: import.meta.env.VITE_API_KEY,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN,
   projectId: import.meta.env.VITE_PROJECT_ID,
@@ -15,29 +16,11 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
 
-class FirebaseConfig{
-    
-    app
-    analytics
 
-    constructor(){
-      this.app = initializeApp(firebaseConfig);
-      this.analytics = getAnalytics(this.app);
-    }
-
-    getApp(){
-      if(this.app){
-        return this.app;
-      }
-      return null;
-    }
-
-    getAnalytics(){
-      if(this.analytics){
-        return this.analytics;
-      }
-      return null;
-    }
+export default function firebaseConfig(){
+  const app = initializeApp(firebaseConfigObject);
+  const analytics = getAnalytics(app);
+  const auth = getAuth(app);
+  console.log("Firebase iniciando com sucesso!")
+  return {app,analytics,auth}
 }
-
-export default FirebaseConfig;

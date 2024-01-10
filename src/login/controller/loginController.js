@@ -1,8 +1,11 @@
+import Dbinit from '../../database/databaseInit.js';
 class LoginController{
-    constructor(){}
+    constructor(){
+        this.db = new Dbinit();
+    }
 
     login(login,pass){
-        console.log(import.meta.env.VITE_TEST_VAR)
+       this.db.createNewUser(login,pass);
     }
     register(){}
 
