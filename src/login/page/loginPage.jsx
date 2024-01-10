@@ -2,7 +2,9 @@ import { Button, Checkbox, Flex, Input, Layout, Radio } from 'antd'
 import LoginController from '../controller/loginController.js'
 import { FaDiscord,FaGoogle } from "react-icons/fa";
 
+
 function Login(){
+    
     let colorsArray = ['#007ff4','#0d2a4c','#181c32','#10395a']
    
     const loginStore = new LoginController();
@@ -18,7 +20,7 @@ function Login(){
                     <Checkbox style={{color:'gray'}}>Lembrar-me</Checkbox>
                     <Button type='text'  style={{color:'#10395a'}}><span style={{ textDecoration:'underline'}}>Esqueceu sua senha?</span></Button>
                 </Flex>
-                <Button type='default' size='large' shape='round' style={{color:'white',backgroundColor:'#10395a',width:'100%'}} onClick={()=>loginStore.login("teste","teste2")}>Login</Button>
+                <Button type='default' size='large' shape='round' style={{color:'white',backgroundColor:'#10395a',width:'100%'}} onClick={()=>loginStore.login("SS","teste2")}>Login</Button>
                 <Button type='link'>Register</Button>
                 <span style={{color:'grey'}}> Pode ainda logar com </span>
                 <Flex gap={24} justify='space-around' align='baseline' style={{width:'100%'}}>
