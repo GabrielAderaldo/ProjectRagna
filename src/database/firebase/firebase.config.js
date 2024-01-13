@@ -18,6 +18,7 @@ const firebaseConfigObject = {
 
 
 export default function firebaseConfig(){
+  console.log("Iniciando Firebase...")
   const app = initializeApp(firebaseConfigObject);
   const analytics = getAnalytics(app);
   const auth = getAuth(app);
