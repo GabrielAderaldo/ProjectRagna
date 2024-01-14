@@ -1,12 +1,12 @@
 import { Button, Checkbox, Flex, Input, Layout, Radio } from 'antd'
 import { FaDiscord,FaGoogle } from "react-icons/fa";
 import { useState } from 'react'
-import { userRead } from '../../database/firebase/firebaseCrudController';
+
 import RagnaInput from '../../components/inputs/ragnaInput';
+import Stroke  from '../../components/stroke/stroke';
+import { emailError, passwordError} from '../controller/loginController';
 function Login(){
 
-    
-    let colorsArray = ['#007ff4','#0d2a4c','#181c32','#10395a']
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [errorLogin,setErrorLogin] = useState('');
@@ -15,36 +15,12 @@ function Login(){
     const [statusPass,setStatusPass] = useState('');
     const [isLoading,setIsLoading] = useState(false);
 
-    //TODO: PASSAR ISSO PARA UMA CANTO ESPECIFICO PARA ISSO
-    const emailRegex = (email) =>{
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (emailRegex.test(email)) return true;
-        return false
-    }
-
-    const strongPassRegex = (password) =>{
-        const strongPassRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        if (strongPassRegex.test(password)) return true;
-        return false
-    }
-    /// ---------------------------------------------
-
     const login = () =>{
-        setIsLoading(true)
-        if (!emailRegex(email)) {
-            setErrorLogin('O email deve está no padrão correto')
-            setStatusLogin('error')
-            setIsLoading(false)
-            
-        }
-
-        if (!strongPassRegex(password)) {
-            setErrorPass('sua senha não pode ser vazia')
-            setStatusPass('error')
-            setIsLoading(false)
-           
-        }
-
+        setIsLoading(true);
+        const resultErrorEmail = emailError(email);
+        const resultErrorPass = passwordError(password);
+        
+        setIsLoading(false);
     }
 
     const handleEmail = (e) => {
@@ -70,7 +46,7 @@ function Login(){
                 </Flex>
                 <Button type='default' size='large' shape='round' style={{color:'white',backgroundColor:'#10395a',width:'100%'}} loading={isLoading} onClick={login}>Login</Button>
                 <Button type='link'>Register</Button>
-                <span style={{color:'grey'}}> Pode ainda logar com </span>
+                <span style={{color:'grey'}}> <Stroke/> Pode ainda logar com </span>
                 <Flex gap={24} justify='space-around' align='baseline' style={{width:'100%'}}>
                     <Button type='default' shape='round' size='large' style={{borderColor:'red'}}><FaGoogle/><span style={{padding:'0 10px'}}>FACEBOOK</span></Button>
                     <Button type='default' shape='round' size='large' style={{borderColor:'blueviolet'}} ><FaDiscord/><span style={{padding:'0 10px'}}>DISCORD</span></Button>

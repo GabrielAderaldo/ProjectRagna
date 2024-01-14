@@ -1,7 +1,6 @@
 import { Flex, Input } from "antd";
 
-export default function ragnaInput(props={placeholder:'placeholder',status:'',setMenssageError:'',type:'',onChange:()=>{}}){
-    const {placeholder,status,onChange,setMenssageError} = props;
+export default function ragnaInput({placeholder,status,setMenssageError,type,onChange}){
     if(status ===  'error' && setMenssageError != null){
         return(
             <>
